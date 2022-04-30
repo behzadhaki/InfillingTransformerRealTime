@@ -1,4 +1,4 @@
-#N canvas -1759 109 1368 823 12;
+#N canvas 412 115 1368 823 12;
 #X obj 66 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 66 27 loadbang;
@@ -19,20 +19,18 @@ max_count_5_in 6 \; max_count_6_in 6 \; max_count_7_in 3 \; max_count_8_in
 4 \; vel_scale_0_in 1 \; vel_scale_1_in 1 \; vel_scale_2_in 1 \; vel_scale_3_in
 1 \; vel_scale_4_in 1 \; vel_scale_5_in 1 \; vel_scale_6_in 1 \; vel_scale_7_in
 1 \; vel_scale_8_in 1 \;;
-#X msg 612 294 \; groove_vel_scale_init 1 \; meter_numerator_preset
-3 \; meter_denominator_preset 2 \; groove_volume 0 \; ppq_selection_init
-0 \; onset_tracker const 0 \; onset_histogram const 0 \; update_on_ut_change_init
-1 \; pd dsp 1 \; record_r 1 \;, f 56;
 #X msg 754 182 \; py2pd_port_init 1100 \; pd2py_port_init 1101 \; drum_out_channel_init
-10 \; metronome_as_midi_out_channel_init 16 \; bpm_r 70 \;;
+10 \; metronome_as_midi_out_channel_init 16 \;;
+#X msg 612 294 \; groove_volume 0 \; ppq_selection_init 0 \; update_on_ut_change_init
+1 \; pd dsp 1 \; record_r 1 \;, f 56;
 #X connect 0 0 3 0;
 #X connect 1 0 5 0;
 #X connect 2 0 0 0;
 #X connect 3 12 4 0;
 #X connect 3 12 8 0;
-#X connect 3 13 10 0;
+#X connect 3 13 11 0;
 #X connect 5 0 0 0;
-#X connect 5 1 11 0;
+#X connect 5 1 10 0;
 #X connect 5 1 7 0;
 #X connect 6 0 7 0;
 #X connect 7 2 9 0;

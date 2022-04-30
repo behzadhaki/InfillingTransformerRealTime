@@ -123,7 +123,7 @@ Now, install all required packages package
 
     pip3 install python-osc
     pip3 install librosa
-
+    pip3 install matplotlib
 
 ### Running Python script
 

@@ -1,45 +1,36 @@
-#N canvas 411 143 960 1003 12;
+#N canvas 0 99 1920 999 12;
 #X obj 849 11 cnv 15 400 200 empty empty Settings_and_Source_Not_Shown_On_Main_GUI
 20 12 0 14 -258113 -66577 0;
-#X obj 760 -52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 760 -33 s reset;
-#X obj 664 667 bng 30 250 50 0 reset empty empty -17 -10 0 8 -258113
+#X obj 713 644 bng 30 250 50 0 reset empty empty -17 -10 0 8 -258113
 -1 -1;
 #X obj 562 194 bng 15 250 50 0 clear_buffers empty empty -17 -10 0
 8 -261234 -1 -1;
 #X obj 916 85 res/main;
-#X obj 9 15 tgl 30 0 empty empty PLAY 4 -5 0 10 -262144 -1 -1 0 1;
-#X obj 49 16 tgl 30 0 record record_r RECORD 4 -5 0 10 -262144 -1 -1
+#X obj 9 15 tgl 20 0 empty empty PLAY 4 -5 0 10 -262144 -1 -1 0 1;
+#X obj 49 16 tgl 20 0 record record_r RECORD 4 -5 0 10 -262144 -1 -1
 1 1;
-#X obj -303 133 s run;
-#X obj -255 195 s force_resend_data_to_py;
-#X obj -255 172 sel 1;
-#X floatatom 260 8 5 0 0 0 py2pd_port py2pd_port_init py2pd_port;
-#X floatatom 260 30 5 0 0 0 pd2py_port pd2py_port_init pd2py_port;
-#X floatatom 99 25 10 0 0 2 BPM #0-bpm bpm;
-#X obj 308 14 bng 15 250 50 0 disconnect_py2pd_connection empty disconnect_py2pd_connection
+#X floatatom 623 6 5 0 0 0 py2pd_port py2pd_port_init py2pd_port;
+#X floatatom 623 28 5 0 0 0 pd2py_port pd2py_port_init pd2py_port;
+#X floatatom 100 18 10 0 0 2 qpm #0-bpm bpm;
+#X obj 666 7 bng 15 250 50 0 disconnect_py2pd_connection empty disconnect
 17 7 0 10 -262144 -1 -1;
-#X obj 308 32 bng 15 250 50 0 disconnect_pd2py_connection empty disconnect_pd2py_connection
+#X obj 666 30 bng 15 250 50 0 disconnect_pd2py_connection empty disconnect
 17 7 0 10 -262144 -1 -1;
 #X obj 8 774 cnv 15 298 68 empty empty empty 20 12 0 14 -262144 -66577
 0;
 #X floatatom 933 957 5 0 0 0 drum_out_channel drum_out_channel_init
 drum_out_channel;
-#X text 23 649 >> python run_generative_engine.py --help;
-#X text 24 628 Don't Forget to Load the Generative Engine;
-#X obj 416 671 hsl 128 15 0.1 20 0 0 empty empty Delay_Between_Generations
+#X obj 152 683 hsl 128 15 0.1 20 0 0 empty empty Delay_Between_Generations
 -2 -8 0 10 -203904 -1 -1 0 0;
-#X floatatom 546 669 5 0 0 0 - - wait_time_between_generations;
-#X obj 515 25 vradio 20 1 0 2 empty empty empty 0 -8 0 10 -203302 -1
+#X floatatom 282 681 5 0 0 0 - - wait_time_between_generations;
+#X obj 284 5 vradio 20 1 0 2 empty empty empty 0 -8 0 10 -203302 -1
 -1 1;
-#X text 539 23 Light;
-#X text 539 43 Heavy;
+#X text 308 3 Light;
+#X text 308 23 Heavy;
 #X obj 618 -56 s model_version;
 #X obj 445 -34 r model_version_r;
 #X floatatom 933 977 5 0 0 0 metronome_as_midi_out_channel metronome_as_midi_out_channel_init
 metronome_as_midi_out_channel;
-#X text 434 628 -- Version 0.7;
 #X obj 887 128 hradio 30 1 0 4 ppq_selection ppq_selection_init PPQ_384_192__96__48
 -19 -8 0 12 -262130 -1 -1 0;
 #N canvas 0 23 868 632 tidyGuts 0;
@@ -472,6 +463,285 @@ metronome_as_midi_out_channel;
 #X restore -159 543 pd tidyGuts;
 #X obj -3 -66 r \$0-playing;
 #X obj -2 -40 change;
+#X obj 24 217 cnv 15 512 36 empty empty empty 0 8 0 12 -229182 -33289
+0;
+#X obj 23 263 cnv 15 512 36 empty empty empty 0 8 0 12 -225077 -33289
+0;
+#X obj 23 308 cnv 15 512 36 empty empty empty 0 8 0 12 -262013 -33289
+0;
+#X obj 23 356 cnv 15 512 36 empty empty empty 0 8 0 12 -257398 -33289
+0;
+#X obj 23 404 cnv 15 512 36 empty empty empty 0 8 0 12 -262136 -33289
+0;
+#X obj 23 451 cnv 15 512 36 empty empty empty 0 8 0 12 -261996 -33289
+0;
+#X obj 23 494 cnv 15 512 36 empty empty empty 0 8 0 12 -261600 -33289
+0;
+#X obj 23 541 cnv 15 512 36 empty empty empty 0 8 0 12 -55982 -33289
+0;
+#X obj 23 586 cnv 15 512 36 empty empty empty 0 8 0 12 -26605 -33289
+0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array HH_CLOSED 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 23 324 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array HH_OPEN 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 23 372 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array TOM_3_LO 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 23 420 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array TOM_2_MID 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 23 467 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array TOM_1_HI 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 23 510 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array CRASH 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 23 556 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array RIDE 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 23 602 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array KICK 3072 float 2;
+#X coords 0 1 3072 0 512 20 2 0 0;
+#X restore 24 233 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array SNARE 3072 float 2;
+#X coords 0 1 3072 0 512 20 1 0 0;
+#X restore 23 279 graph;
+#X obj 38 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 54 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 70 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 86 113 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
+0;
+#X obj 24 192 hsl 512 15 0 3072 0 0 current_pos playback_pos empty
+-2 -8 0 10 -228856 -1 -1 798 1;
+#X obj 22 113 cnv 12 14 68 empty empty empty 20 12 0 4 -232576 -4032
+0;
+#X obj 102 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 118 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 134 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 150 113 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
+0;
+#X obj 166 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 182 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 198 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 214 113 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
+0;
+#X obj 230 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 246 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 262 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 295 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 311 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 327 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 343 113 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
+0;
+#X obj 279 113 cnv 12 14 68 empty empty empty 20 12 0 4 -232576 -66577
+0;
+#X obj 359 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 375 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 391 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 407 113 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
+0;
+#X obj 423 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 439 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 455 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 471 113 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
+0;
+#X obj 487 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 503 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#X obj 519 113 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
+0;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_0_0 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 22 112 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_0_1 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 86 112 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_0_2 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 150 112 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_0_3 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 214 112 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_1_0 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 278 112 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_1_1 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 342 112 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_1_2 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 406 112 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array Beat_1_3 18900 float 2;
+#X coords 0 2 18900 -2 64 70 2 0 0;
+#X restore 470 112 graph;
+#X text 549 173 Clear;
+#X text 672 651 RESET;
+#X text 22 215 KICK;
+#X text 21 261 SNARE;
+#X text 21 306 HH CLOSED;
+#X text 21 354 HH OPEN;
+#X text 21 402 TOM 3 LO;
+#X text 21 492 TOM 1 HI;
+#X text 21 449 TOM 2 MID;
+#X text 21 538 CRASH;
+#X text 21 584 RIDE;
+#X obj 562 113 vsl 15 32 0 2 0 0 silence_threshold empty empty 0 -9
+0 10 -262144 -1 -1 77 0;
+#X text 584 114 Silence;
+#X text 588 129 Thresh;
+#X obj 551 235 hsl 48 17 0 1 0 0 empty thres_0_in empty -2 -8 0 10
+-262144 -1 -1 2350 0;
+#X text 558 216 Likelihood;
+#X floatatom 601 235 5 0 1 0 - - thres0;
+#X obj 644 236 hsl 48 17 0 32 0 0 empty max_count_0_in empty -2 -8
+0 10 -262144 -1 -1 1175 0;
+#X floatatom 694 236 5 0 32 0 - - max_count_0;
+#X text 666 216 Max Count;
+#X obj 551 281 hsl 48 17 0 1 0 0 empty thres_1_in empty -2 -8 0 10
+-262144 -1 -1 2350 0;
+#X floatatom 601 281 5 0 1 0 - - thres1;
+#X obj 644 282 hsl 48 17 0 32 0 0 empty max_count_1_in empty -2 -8
+0 10 -262144 -1 -1 1175 0;
+#X floatatom 694 282 5 0 32 0 - - max_count_1;
+#X obj 551 326 hsl 48 17 0 1 0 0 empty thres_2_in empty -2 -8 0 10
+-262144 -1 -1 2350 0;
+#X floatatom 601 326 5 0 1 0 - - thres2;
+#X obj 644 327 hsl 48 17 0 32 0 0 empty max_count_2_in empty -2 -8
+0 10 -262144 -1 -1 4700 0;
+#X floatatom 694 327 5 0 32 0 - - max_count_2;
+#X obj 553 373 hsl 48 17 0 1 0 0 empty thres_3_in empty -2 -8 0 10
+-262144 -1 -1 3290 0;
+#X floatatom 603 373 5 0 1 0 - - thres3;
+#X obj 646 374 hsl 48 17 0 32 0 0 empty max_count_3_in empty -2 -8
+0 10 -262144 -1 -1 4700 0;
+#X floatatom 696 374 5 0 32 0 - - max_count_3;
+#X obj 552 423 hsl 48 17 0 1 0 0 empty thres_4_in empty -2 -8 0 10
+-262144 -1 -1 3760 0;
+#X floatatom 602 423 5 0 1 0 - - thres4;
+#X obj 645 424 hsl 48 17 0 32 0 0 empty max_count_4_in empty -2 -8
+0 10 -262144 -1 -1 881 0;
+#X floatatom 695 424 5 0 32 0 - - max_count_4;
+#X obj 552 469 hsl 48 17 0 1 0 0 empty thres_5_in empty -2 -8 0 10
+-262144 -1 -1 3760 0;
+#X floatatom 602 469 5 0 1 0 - - thres5;
+#X obj 645 470 hsl 48 17 0 32 0 0 empty max_count_5_in empty -2 -8
+0 10 -262144 -1 -1 881 0;
+#X floatatom 695 470 5 0 32 0 - - max_count_5;
+#X obj 552 514 hsl 48 17 0 1 0 0 empty thres_6_in empty -2 -8 0 10
+-262144 -1 -1 3760 0;
+#X floatatom 602 514 5 0 1 0 - - thres6;
+#X obj 645 515 hsl 48 17 0 32 0 0 empty max_count_6_in empty -2 -8
+0 10 -262144 -1 -1 881 0;
+#X floatatom 695 515 5 0 32 0 - - max_count_6;
+#X obj 551 559 hsl 48 17 0 1 0 0 empty thres_7_in empty -2 -8 0 10
+-262144 -1 -1 4230 0;
+#X floatatom 601 559 5 0 1 0 - - thres7;
+#X obj 651 559 hsl 48 17 0 32 0 0 empty max_count_7_in empty -2 -8
+0 10 -262144 -1 -1 441 0;
+#X floatatom 701 559 5 0 32 0 - - max_count_7;
+#X obj 552 603 hsl 48 17 0 1 0 0 empty thres_8_in empty -2 -8 0 10
+-262144 -1 -1 2350 0;
+#X floatatom 602 603 5 0 1 0 - - thres8;
+#X obj 652 603 hsl 48 17 0 32 0 0 empty max_count_8_in empty -2 -8
+0 10 -262144 -1 -1 587 0;
+#X floatatom 702 603 5 0 32 0 - - max_count_8;
+#X obj 544 -102 loadbang;
+#X msg 544 -78 0.05;
+#X msg 805 282 \; Beat_0_0 const 0 \; Beat_0_1 const 0 \; Beat_0_2
+const 0 \; Beat_0_3 const 0 \; Beat_1_0 const 0 \; Beat_1_1 const 0
+\; Beat_1_2 const 0 \; Beat_1_3 const 0 \;;
+#X obj 805 256 r clear_buffers;
+#X obj 426 680 nbx 5 14 -1e+37 1e+37 0 0 empty 2bars_count empty 0
+-8 0 10 -262144 -1 -1 0 256;
+#X obj 7 681 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 322 817 list prepend send, f 10;
+#X obj 322 865 list trim;
+#X obj 321 753 symbol;
+#X obj 318 891 s netsend2;
+#X obj 322 783 oscformat /dump_internal_wav/;
+#X text 30 678 save py buffer;
+#X text 331 678 2-bars played;
+#N canvas 0 23 899 594 prepare_before_start 0;
+#X obj 61 17 inlet;
+#X obj 7 140 s run;
+#X obj 55 202 s force_resend_data_to_py;
+#X obj 55 179 sel 1;
+#X obj 55 224 s clear_buffers;
+#X obj 55 247 s request_tmp_folder_via_osc;
+#X obj 110 133 s send_params_osc;
+#X obj 110 92 sel 1;
+#X obj 64 69 t f f f;
+#X obj 124 159 s clear_buffers;
+#X obj 82 534 outlet;
+#X obj 120 473 r tmpFolder;
+#X obj 50 388 loadbang;
+#X msg 50 421 >>python..Run..Generative..Engine..>>..python..run_generative_engine.py..--help
+;
+#X obj 53 475 symbol;
+#X text 207 473 tmpFolder path received from python;
+#X obj 358 258 s trigger_silence_threshold;
+#X obj 288 287 s overdub_osc;
+#X connect 0 0 8 0;
+#X connect 3 0 2 0;
+#X connect 3 0 4 0;
+#X connect 3 0 5 0;
+#X connect 7 0 6 0;
+#X connect 7 0 9 0;
+#X connect 7 0 16 0;
+#X connect 7 0 17 0;
+#X connect 8 0 1 0;
+#X connect 8 1 3 0;
+#X connect 8 2 7 0;
+#X connect 11 0 10 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 10 0;
+#X restore -173 46 pd prepare_before_start;
+#X symbolatom 6 645 80 0 0 0 - - -;
+#X text 3 628 Tmp Folder Path for Segment Wav Files;
+#X text 642 678 -- Version 0.1;
 #N canvas 636 191 1284 818 playhead_guts 0;
 #X obj 62 225 r playhead;
 #X obj 54 846 s \$0-playing;
@@ -550,6 +820,13 @@ lastbar timesig position, f 79;
 #X obj 816 801 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 44100 256;
 #X obj 816 818 s sr;
+#X floatatom 956 713 8 0 0 2 - #0-pos-ppq -;
+#X text 1009 714 PPQ;
+#X obj 959 743 div 8;
+#X obj 957 771 change;
+#X obj 956 823 s 2bars_count;
+#X obj 957 802 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
 #X connect 0 0 14 0;
 #X connect 3 0 4 0;
 #X connect 3 1 5 0;
@@ -588,103 +865,127 @@ lastbar timesig position, f 79;
 #X connect 67 0 68 0;
 #X connect 68 0 69 0;
 #X connect 69 0 70 0;
-#X restore -159 593 pd playhead_guts;
-#X obj 24 217 cnv 15 512 36 empty empty empty 0 8 0 12 -229182 -33289
-0;
-#X obj 23 263 cnv 15 512 36 empty empty empty 0 8 0 12 -225077 -33289
-0;
-#X obj 23 308 cnv 15 512 36 empty empty empty 0 8 0 12 -262013 -33289
-0;
-#X obj 23 356 cnv 15 512 36 empty empty empty 0 8 0 12 -257398 -33289
-0;
-#X obj 23 404 cnv 15 512 36 empty empty empty 0 8 0 12 -262136 -33289
-0;
-#X obj 23 451 cnv 15 512 36 empty empty empty 0 8 0 12 -261996 -33289
-0;
-#X obj 23 494 cnv 15 512 36 empty empty empty 0 8 0 12 -261600 -33289
-0;
-#X obj 23 541 cnv 15 512 36 empty empty empty 0 8 0 12 -55982 -33289
-0;
-#X obj 23 586 cnv 15 512 36 empty empty empty 0 8 0 12 -26605 -33289
-0;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array HH_CLOSED 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 23 324 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array HH_OPEN 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 23 372 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array TOM_3_LO 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 23 420 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array TOM_2_MID 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 23 467 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array TOM_1_HI 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 23 510 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array CRASH 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 23 556 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array RIDE 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 23 602 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array KICK 3072 float 2;
-#X coords 0 1 3072 0 512 20 2 0 0;
-#X restore 24 233 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array SNARE 3072 float 2;
-#X coords 0 1 3072 0 512 20 1 0 0;
-#X restore 23 279 graph;
-#N canvas 0 23 826 686 misc_dont_remove 0;
-#X obj -678 -100 hradio 16 1 0 32 empty starting_step_init Starting_Step
--80 7 0 10 -237503 -1 -1 0;
-#X obj -785 81 s starting_step;
-#X obj -785 34 + 1;
-#X floatatom -785 58 5 0 0 0 - - -;
-#X obj -630 0 r half_step_ticks;
-#X obj -725 -2 r step_ticks;
-#X floatatom -743 46 5 0 0 0 - - -;
-#X floatatom -649 48 5 0 0 0 - - -;
-#X obj -736 157 s starting_tick_pos;
-#X obj -785 103 expr ($f1-1)*$f2+$f3;
-#X floatatom -736 134 5 0 0 0 - - -;
-#X obj -782 179 s force_resend_data_to_py;
-#X obj -782 126 t b f;
-#X obj -680 -84 tgl 10 0 empty force_start_here Always_Start_Here 20
-5 0 10 -258113 -1 -258113 0 1;
-#X obj -266 70 s force_start_here;
-#X obj -267 41 change;
-#X connect 0 0 2 0;
-#X connect 2 0 3 0;
-#X connect 3 0 1 0;
-#X connect 3 0 9 0;
-#X connect 4 0 7 0;
-#X connect 5 0 6 0;
-#X connect 6 0 9 1;
-#X connect 7 0 9 2;
-#X connect 9 0 12 0;
-#X connect 10 0 8 0;
+#X connect 71 0 73 0;
+#X connect 73 0 74 0;
+#X connect 74 0 76 0;
+#X connect 76 0 75 0;
+#X restore -139 616 pd playhead_guts;
+#N canvas 0 28 1522 883 audio_buffer_length 0;
+#X obj 80 63 samplerate~;
+#X floatatom 80 87 5 0 0 0 - - -;
+#X obj 80 43 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 80 -22 r run;
+#X obj 80 124 s sr;
+#X obj 155 195 r bpm;
+#X obj 98 263 expr $f2/$f3*60;
+#X obj 98 195 r sr;
+#X obj 155 233 t b f, f 7;
+#X obj 100 234 t b f, f 7;
+#X obj 547 494 * 4;
+#X obj 241 572 s samples_per_16note;
+#X obj 240 551 nbx 12 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 547 562 nbx 12 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 547 581 s samples_per_bar;
+#X obj 723 498 * 8;
+#X obj 41 585 s samples_per_quarterBeat;
+#X obj 25 545 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 37 510 div 1;
+#X obj 240 530 div 4;
+#X obj 553 518 div 1;
+#X obj 723 522 div 1;
+#X obj 722 548 nbx 12 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 766 574 s samples_per_2bars;
+#X obj 154 17 loadbang;
+#X obj 405 568 s samples_per_32note;
+#X obj 405 552 nbx 12 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 405 530 div 8;
+#X obj 501 591 r sr;
+#X obj 335 596 r sr;
+#X obj 413 638 nbx 12 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 251 642 nbx 12 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 406 613 expr $f1/$f2*1000;
+#X obj 240 618 expr $f1/$f2*1000;
+#X obj 409 656 s ms_per_32note;
+#X obj 243 661 s ms_per_16note;
+#X obj 813 601 r sr;
+#X obj 725 648 nbx 12 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X obj 718 623 expr $f1/$f2*1000;
+#X obj 721 666 s ms_per_2bars;
+#X obj 81 8 sel 1;
+#X obj 209 290 change;
+#X obj 205 350 t f f f f f;
+#X obj 207 320 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 586 735 pack f f f f f f;
+#X obj 725 693 r bpm;
+#X obj 681 690 r sr;
+#X obj 589 779 s state_params_osc;
+#X obj 99 217 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 155 218 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 2 0 0 0;
+#X connect 3 0 40 0;
+#X connect 5 0 49 0;
+#X connect 6 0 41 0;
+#X connect 7 0 9 0;
+#X connect 8 0 6 0;
+#X connect 8 1 6 2;
+#X connect 9 0 6 0;
+#X connect 9 1 6 1;
+#X connect 10 0 20 0;
 #X connect 12 0 11 0;
-#X connect 12 1 10 0;
-#X connect 13 0 15 0;
-#X connect 15 0 14 0;
-#X restore 948 475 pd misc_dont_remove;
-#X obj 38 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 54 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 70 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 86 93 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
-0;
+#X connect 12 0 33 0;
+#X connect 12 0 44 1;
+#X connect 13 0 14 0;
+#X connect 15 0 21 0;
+#X connect 17 0 16 0;
+#X connect 17 0 44 0;
+#X connect 18 0 17 0;
+#X connect 19 0 12 0;
+#X connect 20 0 13 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 22 0 38 0;
+#X connect 22 0 44 3;
+#X connect 24 0 2 0;
+#X connect 26 0 25 0;
+#X connect 26 0 32 0;
+#X connect 26 0 44 2;
+#X connect 27 0 26 0;
+#X connect 28 0 32 1;
+#X connect 29 0 33 1;
+#X connect 30 0 34 0;
+#X connect 31 0 35 0;
+#X connect 32 0 30 0;
+#X connect 33 0 31 0;
+#X connect 36 0 38 1;
+#X connect 37 0 39 0;
+#X connect 38 0 37 0;
+#X connect 40 0 2 0;
+#X connect 41 0 43 0;
+#X connect 42 0 18 0;
+#X connect 42 1 19 0;
+#X connect 42 2 27 0;
+#X connect 42 3 10 0;
+#X connect 42 4 15 0;
+#X connect 43 0 42 0;
+#X connect 44 0 47 0;
+#X connect 45 0 44 5;
+#X connect 46 0 44 4;
+#X connect 49 0 8 0;
+#X restore 934 248 pd audio_buffer_length;
 #N canvas 0 23 354 332 adjust_tables 0;
 #X obj 8 4 r sr;
 #X obj 10 35 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
@@ -698,7 +999,7 @@ resize \$1 \; Beat_1_2 resize \$1 \; Beat_1_3 resize \$1 \;;
 #X connect 0 0 1 0;
 #X connect 2 0 4 0;
 #X connect 3 0 2 0;
-#X restore 935 517 pd adjust_tables;
+#X restore 947 306 pd adjust_tables;
 #N canvas 383 142 620 473 get_bar_beat 0;
 #X obj 121 122 div 1;
 #X floatatom 94 56 8 0 0 2 - #0-pos-ppq -;
@@ -747,16 +1048,14 @@ resize \$1 \; Beat_1_2 resize \$1 \; Beat_1_3 resize \$1 \;;
 #X connect 20 0 2 0;
 #X connect 21 0 22 0;
 #X connect 22 0 16 0;
-#X restore 935 545 pd get_bar_beat;
-#X obj 997 569 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 1 256;
-#X obj 938 569 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 3 256;
-#X text 994 586 Bar in Loop;
-#X text 896 582 beat in bar;
-#X obj 24 177 hsl 512 15 0 3072 0 0 current_pos playback_pos empty
--2 -8 0 10 -228856 -1 -1 798 1;
-#N canvas 20 143 1397 1003 record_save_segment 0;
+#X restore 1130 248 pd get_bar_beat;
+#X obj 1192 272 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 1 256;
+#X obj 1133 272 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 3 256;
+#X text 1189 289 Bar in Loop;
+#X text 1091 285 beat in bar;
+#N canvas 523 92 1397 1003 record_save_segment 0;
 #X obj 201 68 inlet beat_in_bar;
 #X obj 346 70 inlet bar_in_loop;
 #X obj 200 99 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
@@ -833,46 +1132,38 @@ resize \$1 \; Beat_1_2 resize \$1 \; Beat_1_3 resize \$1 \;;
 #X obj 151 407 r pos-ppq;
 #X obj 74 428 expr if($f2<1 \, 0 \, 1);
 #X obj 58 377 t b b;
-#X obj 744 667 res/save_segment_wav;
-#X obj 856 618 r tmpFolder;
-#X obj 745 689 s osc_filename_ready;
-#X obj 749 788 res/save_segment_wav;
-#X obj 861 739 r tmpFolder;
-#X obj 750 810 s osc_filename_ready;
+#X obj 856 538 r tmpFolder;
+#X obj 746 680 s osc_filename_ready;
+#X obj 863 743 r tmpFolder;
+#X obj 752 851 s osc_filename_ready;
 #X obj 721 531 r save_Beat_0_0;
 #X msg 721 556 symbol Beat_0_0;
-#X obj 727 726 r save_Beat_1_0;
-#X msg 727 753 symbol Beat_1_0;
-#X obj 1011 663 res/save_segment_wav;
-#X obj 1123 614 r tmpFolder;
-#X obj 1012 685 s osc_filename_ready;
-#X obj 1016 784 res/save_segment_wav;
-#X obj 1128 735 r tmpFolder;
-#X obj 1017 806 s osc_filename_ready;
-#X obj 989 601 r save_Beat_0_1;
-#X msg 989 628 symbol Beat_0_1;
-#X obj 994 722 r save_Beat_1_1;
-#X msg 994 749 symbol Beat_1_1;
-#X obj 811 972 res/save_segment_wav;
-#X obj 923 923 r tmpFolder;
-#X obj 812 994 s osc_filename_ready;
-#X obj 816 1093 res/save_segment_wav;
-#X obj 928 1044 r tmpFolder;
-#X obj 817 1115 s osc_filename_ready;
-#X obj 789 910 r save_Beat_0_2;
-#X msg 789 937 symbol Beat_0_2;
-#X obj 794 1031 r save_Beat_1_2;
-#X msg 794 1058 symbol Beat_1_2;
-#X obj 1080 973 res/save_segment_wav;
-#X obj 1192 924 r tmpFolder;
-#X obj 1081 995 s osc_filename_ready;
-#X obj 1085 1094 res/save_segment_wav;
-#X obj 1197 1045 r tmpFolder;
-#X obj 1086 1116 s osc_filename_ready;
-#X obj 1058 911 r save_Beat_0_3;
-#X msg 1058 938 symbol Beat_0_3;
-#X obj 1063 1032 r save_Beat_1_3;
-#X msg 1063 1059 symbol Beat_1_3;
+#X obj 729 730 r save_Beat_1_0;
+#X msg 729 757 symbol Beat_1_0;
+#X obj 1123 534 r tmpFolder;
+#X obj 1013 676 s osc_filename_ready;
+#X obj 1130 739 r tmpFolder;
+#X obj 1019 847 s osc_filename_ready;
+#X obj 989 521 r save_Beat_0_1;
+#X msg 989 548 symbol Beat_0_1;
+#X obj 996 726 r save_Beat_1_1;
+#X msg 996 753 symbol Beat_1_1;
+#X obj 885 950 r tmpFolder;
+#X obj 774 1071 s osc_filename_ready;
+#X obj 928 1144 r tmpFolder;
+#X obj 817 1275 s osc_filename_ready;
+#X obj 751 937 r save_Beat_0_2;
+#X msg 751 964 symbol Beat_0_2;
+#X obj 794 1131 r save_Beat_1_2;
+#X msg 794 1158 symbol Beat_1_2;
+#X obj 1154 951 r tmpFolder;
+#X obj 1043 1072 s osc_filename_ready;
+#X obj 1197 1145 r tmpFolder;
+#X obj 1086 1276 s osc_filename_ready;
+#X obj 1020 938 r save_Beat_0_3;
+#X msg 1020 965 symbol Beat_0_3;
+#X obj 1063 1132 r save_Beat_1_3;
+#X msg 1063 1159 symbol Beat_1_3;
 #X obj 254 459 s start10;
 #X obj 74 470 s save_Beat_1_3;
 #X obj 258 434 s save_Beat_0_3;
@@ -882,6 +1173,30 @@ resize \$1 \; Beat_1_2 resize \$1 \; Beat_1_3 resize \$1 \;;
 #X obj 604 410 s save_Beat_1_1;
 #X obj 672 349 s save_Beat_0_2;
 #X obj 815 343 s save_Beat_1_2;
+#X obj 744 586 res/save_segment_wav;
+#X obj 1011 583 res/save_segment_wav;
+#X obj 1018 788 res/save_segment_wav;
+#X obj 751 792 res/save_segment_wav;
+#X obj 773 999 res/save_segment_wav;
+#X obj 1042 1000 res/save_segment_wav;
+#X obj 1085 1194 res/save_segment_wav;
+#X obj 816 1193 res/save_segment_wav;
+#X obj 751 707 s saved_Beat_0_0;
+#X obj 1013 701 s saved_Beat_0_1;
+#X obj 751 874 s saved_Beat_1_0;
+#X obj 1012 870 s saved_Beat_1_1;
+#X obj 772 1099 s saved_Beat_0_2;
+#X obj 1033 1095 s saved_Beat_0_3;
+#X obj 1089 1303 s saved_Beat_1_3;
+#X obj 828 1307 s saved_Beat_1_2;
+#X msg 806 628 symbol Beat_0_0.zero;
+#X msg 1025 628 symbol Beat_0_1.zero;
+#X msg 813 822 symbol Beat_1_0.zero;
+#X msg 1032 822 symbol Beat_1_1.zero;
+#X msg 807 1041 symbol Beat_0_2.zero;
+#X msg 1099 1040 symbol Beat_0_3.zero;
+#X msg 852 1238 symbol Beat_1_2.zero;
+#X msg 1144 1237 symbol Beat_1_3.zero;
 #X connect 0 0 2 0;
 #X connect 1 0 3 0;
 #X connect 2 0 7 0;
@@ -897,20 +1212,20 @@ resize \$1 \; Beat_1_2 resize \$1 \; Beat_1_3 resize \$1 \;;
 #X connect 9 0 8 0;
 #X connect 10 0 68 0;
 #X connect 12 0 73 0;
-#X connect 12 1 114 0;
-#X connect 12 1 116 0;
+#X connect 12 1 106 0;
+#X connect 12 1 108 0;
 #X connect 14 0 17 0;
-#X connect 14 0 117 0;
+#X connect 14 0 109 0;
 #X connect 14 1 18 0;
-#X connect 14 1 118 0;
+#X connect 14 1 110 0;
 #X connect 15 0 19 0;
-#X connect 15 0 119 0;
+#X connect 15 0 111 0;
 #X connect 15 1 20 0;
-#X connect 15 1 120 0;
+#X connect 15 1 112 0;
 #X connect 16 0 21 0;
-#X connect 16 0 121 0;
+#X connect 16 0 113 0;
 #X connect 16 1 22 0;
-#X connect 16 1 122 0;
+#X connect 16 1 114 0;
 #X connect 23 0 4 0;
 #X connect 24 0 28 0;
 #X connect 25 0 28 0;
@@ -950,279 +1265,156 @@ resize \$1 \; Beat_1_2 resize \$1 \; Beat_1_3 resize \$1 \;;
 #X connect 67 0 28 0;
 #X connect 68 0 59 0;
 #X connect 69 0 68 2;
-#X connect 70 0 115 0;
+#X connect 70 0 107 0;
 #X connect 71 0 72 1;
 #X connect 72 0 70 0;
 #X connect 73 0 13 0;
 #X connect 73 1 72 0;
-#X connect 74 0 76 0;
-#X connect 75 0 74 1;
-#X connect 77 0 79 0;
-#X connect 78 0 77 1;
+#X connect 74 0 115 1;
+#X connect 76 0 118 1;
+#X connect 78 0 79 0;
+#X connect 79 0 115 0;
 #X connect 80 0 81 0;
-#X connect 81 0 74 0;
-#X connect 82 0 83 0;
-#X connect 83 0 77 0;
-#X connect 84 0 86 0;
-#X connect 85 0 84 1;
-#X connect 87 0 89 0;
-#X connect 88 0 87 1;
-#X connect 90 0 91 0;
-#X connect 91 0 84 0;
-#X connect 92 0 93 0;
-#X connect 93 0 87 0;
-#X connect 94 0 96 0;
-#X connect 95 0 94 1;
-#X connect 97 0 99 0;
-#X connect 98 0 97 1;
-#X connect 100 0 101 0;
-#X connect 101 0 94 0;
+#X connect 81 0 118 0;
+#X connect 82 0 116 1;
+#X connect 84 0 117 1;
+#X connect 86 0 87 0;
+#X connect 87 0 116 0;
+#X connect 88 0 89 0;
+#X connect 89 0 117 0;
+#X connect 90 0 119 1;
+#X connect 92 0 122 1;
+#X connect 94 0 95 0;
+#X connect 95 0 119 0;
+#X connect 96 0 97 0;
+#X connect 97 0 122 0;
+#X connect 98 0 120 1;
+#X connect 100 0 121 1;
 #X connect 102 0 103 0;
-#X connect 103 0 97 0;
-#X connect 104 0 106 0;
-#X connect 105 0 104 1;
-#X connect 107 0 109 0;
-#X connect 108 0 107 1;
+#X connect 103 0 120 0;
+#X connect 104 0 105 0;
+#X connect 105 0 121 0;
+#X connect 115 0 75 0;
+#X connect 115 1 131 0;
+#X connect 115 2 123 0;
+#X connect 116 0 83 0;
+#X connect 116 1 132 0;
+#X connect 116 2 124 0;
+#X connect 117 0 85 0;
+#X connect 117 1 134 0;
+#X connect 117 2 126 0;
+#X connect 118 0 77 0;
+#X connect 118 1 133 0;
+#X connect 118 2 125 0;
+#X connect 119 0 91 0;
+#X connect 119 1 135 0;
+#X connect 119 2 127 0;
+#X connect 120 0 99 0;
+#X connect 120 1 136 0;
+#X connect 120 2 128 0;
+#X connect 121 0 101 0;
+#X connect 121 1 138 0;
+#X connect 121 2 129 0;
+#X connect 122 0 93 0;
+#X connect 122 1 137 0;
+#X connect 122 2 130 0;
+#X connect 131 0 75 0;
+#X connect 132 0 83 0;
+#X connect 133 0 77 0;
+#X connect 134 0 85 0;
+#X connect 135 0 91 0;
+#X connect 136 0 99 0;
+#X connect 137 0 93 0;
+#X connect 138 0 101 0;
+#X restore 1120 308 pd record_save_segment;
+#X symbolatom 81 52 20 0 0 0 debugger debugger -;
+#X obj 23 113 bng 15 500 50 0 empty saved_Beat_0_0 saved 17 7 0 10
+-4032 -1 -4032;
+#X obj 86 113 bng 15 500 50 0 empty saved_Beat_0_1 empty 17 7 0 10
+-4032 -1 -4032;
+#X obj 151 113 bng 15 500 50 0 empty saved_Beat_0_2 empty 17 7 0 10
+-4032 -1 -4032;
+#X obj 214 113 bng 15 500 50 0 empty saved_Beat_0_3 empty 17 7 0 10
+-4032 -1 -4032;
+#X obj 342 113 bng 15 500 50 0 empty saved_Beat_1_1 empty 17 7 0 10
+-4032 -1 -4032;
+#X obj 406 113 bng 15 500 50 0 empty saved_Beat_1_2 empty 17 7 0 10
+-4032 -1 -4032;
+#X obj 470 113 bng 15 500 50 0 empty saved_Beat_1_3 empty 17 7 0 10
+-4032 -1 -4032;
+#X obj 279 113 bng 15 500 50 0 empty saved_Beat_1_0 empty 17 7 0 10
+-4032 -1 -4032;
+#X obj 573 69 bng 15 250 50 0 empty trigger_silence_threshold empty
+17 7 0 10 -262144 -1 -1;
+#X obj 655 113 vsl 15 32 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 620 0;
+#X text 681 129 Ratio;
+#X text 628 68 Overdub MSO;
+#X obj 655 91 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 762 185 f;
+#X obj 804 185 f;
+#X obj 805 218 s overdub_ratio;
+#X obj 760 2 loadbang;
+#X msg 760 26 1;
+#X msg 760 50 0.2;
+#X obj 780 119 r overdub_osc;
+#X obj 783 144 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 761 233 s overdub;
+#X obj 562 152 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0.05 256;
+#X obj 655 152 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0.2 256;
+#X connect 4 0 149 0;
+#X connect 13 0 14 0;
+#X connect 15 0 18 0;
+#X connect 19 0 15 0;
+#X connect 23 0 24 0;
+#X connect 24 0 4 0;
+#X connect 95 0 185 0;
+#X connect 98 0 100 0;
+#X connect 101 0 102 0;
+#X connect 104 0 105 0;
+#X connect 106 0 107 0;
+#X connect 108 0 109 0;
 #X connect 110 0 111 0;
-#X connect 111 0 104 0;
 #X connect 112 0 113 0;
-#X connect 113 0 107 0;
-#X restore 925 605 pd record_save_segment;
-#X obj 22 93 cnv 12 14 68 empty empty empty 20 12 0 4 -232576 -66577
-0;
-#X obj 102 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 118 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 134 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 150 93 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
-0;
-#X obj 166 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 182 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 198 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 214 93 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
-0;
-#X obj 230 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 246 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 262 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 295 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 311 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 327 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 343 93 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
-0;
-#X obj 279 93 cnv 12 14 68 empty empty empty 20 12 0 4 -232576 -66577
-0;
-#X obj 359 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 375 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 391 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 407 93 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
-0;
-#X obj 423 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 439 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 455 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 471 93 cnv 12 14 68 empty empty empty 20 12 0 4 -228856 -66577
-0;
-#X obj 487 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 503 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#X obj 519 93 cnv 12 14 68 empty empty empty 20 12 0 4 -253822 -66577
-0;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_0_0 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 22 92 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_0_1 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 86 92 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_0_2 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 150 92 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_0_3 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 214 92 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_1_0 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 278 92 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_1_1 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 342 92 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_1_2 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 406 92 graph;
-#N canvas 0 23 450 278 (subpatch) 0;
-#X array Beat_1_3 18900 float 2;
-#X coords 0 2 18900 -2 64 70 2 0 0;
-#X restore 470 92 graph;
-#X text 549 173 Clear;
-#X text 658 647 RESET;
-#X text 22 215 KICK;
-#X text 21 261 SNARE;
-#X text 21 306 HH CLOSED;
-#X text 21 354 HH OPEN;
-#X text 21 402 TOM 3 LO;
-#X text 21 492 TOM 1 HI;
-#X text 21 449 TOM 2 MID;
-#X text 21 538 CRASH;
-#X text 21 584 RIDE;
-#X obj 559 93 vsl 15 32 0 2 0 0 silence_threshold empty empty 0 -9
-0 10 -262144 -1 -1 77 1;
-#X text 540 132 Silence;
-#X text 544 147 Thresh;
-#X obj 551 235 hsl 48 17 0 1 0 0 empty thres_0_in empty -2 -8 0 10
--262144 -1 -1 2350 0;
-#X text 558 216 Likelihood;
-#X floatatom 601 235 5 0 1 0 - - thres0;
-#X obj 644 236 hsl 48 17 0 32 0 0 empty max_count_0_in empty -2 -8
-0 10 -262144 -1 -1 1175 0;
-#X floatatom 694 236 5 0 32 0 - - max_count_0;
-#X text 666 216 Max Count;
-#X obj 551 281 hsl 48 17 0 1 0 0 empty thres_1_in empty -2 -8 0 10
--262144 -1 -1 2350 0;
-#X floatatom 601 281 5 0 1 0 - - thres1;
-#X obj 644 282 hsl 48 17 0 32 0 0 empty max_count_1_in empty -2 -8
-0 10 -262144 -1 -1 1175 0;
-#X floatatom 694 282 5 0 32 0 - - max_count_1;
-#X obj 551 326 hsl 48 17 0 1 0 0 empty thres_2_in empty -2 -8 0 10
--262144 -1 -1 2350 0;
-#X floatatom 601 326 5 0 1 0 - - thres2;
-#X obj 644 327 hsl 48 17 0 32 0 0 empty max_count_2_in empty -2 -8
-0 10 -262144 -1 -1 4700 0;
-#X floatatom 694 327 5 0 32 0 - - max_count_2;
-#X obj 553 373 hsl 48 17 0 1 0 0 empty thres_3_in empty -2 -8 0 10
--262144 -1 -1 3290 0;
-#X floatatom 603 373 5 0 1 0 - - thres3;
-#X obj 646 374 hsl 48 17 0 32 0 0 empty max_count_3_in empty -2 -8
-0 10 -262144 -1 -1 4700 0;
-#X floatatom 696 374 5 0 32 0 - - max_count_3;
-#X obj 552 423 hsl 48 17 0 1 0 0 empty thres_4_in empty -2 -8 0 10
--262144 -1 -1 3760 0;
-#X floatatom 602 423 5 0 1 0 - - thres4;
-#X obj 645 424 hsl 48 17 0 32 0 0 empty max_count_4_in empty -2 -8
-0 10 -262144 -1 -1 881 0;
-#X floatatom 695 424 5 0 32 0 - - max_count_4;
-#X obj 552 469 hsl 48 17 0 1 0 0 empty thres_5_in empty -2 -8 0 10
--262144 -1 -1 3760 0;
-#X floatatom 602 469 5 0 1 0 - - thres5;
-#X obj 645 470 hsl 48 17 0 32 0 0 empty max_count_5_in empty -2 -8
-0 10 -262144 -1 -1 881 0;
-#X floatatom 695 470 5 0 32 0 - - max_count_5;
-#X obj 552 514 hsl 48 17 0 1 0 0 empty thres_6_in empty -2 -8 0 10
--262144 -1 -1 3760 0;
-#X floatatom 602 514 5 0 1 0 - - thres6;
-#X obj 645 515 hsl 48 17 0 32 0 0 empty max_count_6_in empty -2 -8
-0 10 -262144 -1 -1 881 0;
-#X floatatom 695 515 5 0 32 0 - - max_count_6;
-#X obj 551 559 hsl 48 17 0 1 0 0 empty thres_7_in empty -2 -8 0 10
--262144 -1 -1 4230 0;
-#X floatatom 601 559 5 0 1 0 - - thres7;
-#X obj 651 559 hsl 48 17 0 32 0 0 empty max_count_7_in empty -2 -8
-0 10 -262144 -1 -1 441 0;
-#X floatatom 701 559 5 0 32 0 - - max_count_7;
-#X obj 552 603 hsl 48 17 0 1 0 0 empty thres_8_in empty -2 -8 0 10
--262144 -1 -1 2350 0;
-#X floatatom 602 603 5 0 1 0 - - thres8;
-#X obj 652 603 hsl 48 17 0 32 0 0 empty max_count_8_in empty -2 -8
-0 10 -262144 -1 -1 587 0;
-#X floatatom 702 603 5 0 32 0 - - max_count_8;
-#X obj 624 77 loadbang;
-#X msg 624 101 0.05;
-#X msg 805 282 \; Beat_0_0 const 0 \; Beat_0_1 const 0 \; Beat_0_2
-const 0 \; Beat_0_3 const 0 \; Beat_1_0 const 0 \; Beat_1_1 const 0
-\; Beat_1_2 const 0 \; Beat_1_3 const 0 \;;
-#X obj 805 256 r clear_buffers;
-#X obj -255 217 s clear_buffers;
-#X obj -161 -64 sel 1;
-#X obj -169 11 s clear_buffers;
-#X obj -255 240 s request_tmp_folder_via_osc;
-#X floatatom 782 468 8 0 0 2 - #0-pos-ppq -;
-#X text 835 469 PPQ;
-#X obj 785 498 div 8;
-#X obj 783 526 change;
-#X obj 786 580 s 2bars_count;
-#X obj 689 629 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj -200 106 s send_params_osc;
-#X obj -246 62 t f f f;
-#X obj -200 85 sel 1;
-#X obj 67 681 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 322 817 list prepend send, f 10;
-#X obj 322 865 list trim;
-#X obj 321 753 symbol;
-#X obj 318 891 s netsend2;
-#X obj 322 783 oscformat /dump_internal_wav/;
-#X text 90 678 save py buffer;
-#X connect 1 0 2 0;
-#X connect 6 0 158 0;
-#X connect 6 0 168 0;
-#X connect 10 0 9 0;
-#X connect 10 0 157 0;
-#X connect 10 0 160 0;
-#X connect 20 0 21 0;
-#X connect 22 0 25 0;
-#X connect 26 0 22 0;
-#X connect 31 0 32 0;
-#X connect 32 0 6 0;
-#X connect 58 0 60 0;
-#X connect 58 1 59 0;
-#X connect 59 0 64 1;
-#X connect 60 0 64 0;
-#X connect 115 0 117 0;
+#X connect 114 0 115 0;
+#X connect 116 0 117 0;
 #X connect 118 0 119 0;
-#X connect 121 0 122 0;
-#X connect 123 0 124 0;
-#X connect 125 0 126 0;
-#X connect 127 0 128 0;
-#X connect 129 0 130 0;
-#X connect 131 0 132 0;
-#X connect 133 0 134 0;
-#X connect 135 0 136 0;
-#X connect 137 0 138 0;
-#X connect 139 0 140 0;
-#X connect 141 0 142 0;
-#X connect 143 0 144 0;
-#X connect 145 0 146 0;
-#X connect 147 0 148 0;
+#X connect 120 0 121 0;
+#X connect 122 0 123 0;
+#X connect 124 0 125 0;
+#X connect 126 0 127 0;
+#X connect 128 0 129 0;
+#X connect 130 0 131 0;
+#X connect 132 0 133 0;
+#X connect 134 0 135 0;
+#X connect 136 0 137 0;
+#X connect 137 0 95 0;
+#X connect 139 0 138 0;
+#X connect 141 0 144 0;
+#X connect 142 0 143 0;
+#X connect 143 0 145 0;
+#X connect 144 0 146 0;
+#X connect 146 0 142 0;
 #X connect 149 0 150 0;
-#X connect 151 0 152 0;
-#X connect 153 0 154 0;
-#X connect 154 0 112 0;
-#X connect 156 0 155 0;
-#X connect 158 0 159 0;
-#X connect 161 0 163 0;
-#X connect 163 0 164 0;
-#X connect 164 0 166 0;
-#X connect 166 0 165 0;
-#X connect 168 0 8 0;
-#X connect 168 1 10 0;
-#X connect 168 2 169 0;
-#X connect 169 0 167 0;
-#X connect 170 0 173 0;
-#X connect 171 0 172 0;
-#X connect 172 0 174 0;
-#X connect 173 0 175 0;
-#X connect 175 0 171 0;
+#X connect 156 0 158 0;
+#X connect 156 1 157 0;
+#X connect 157 0 161 1;
+#X connect 158 0 161 0;
+#X connect 171 0 95 0;
+#X connect 172 0 177 0;
+#X connect 172 0 186 0;
+#X connect 175 0 176 0;
+#X connect 176 0 184 0;
+#X connect 177 0 178 0;
+#X connect 179 0 180 0;
+#X connect 180 0 181 0;
+#X connect 180 0 175 0;
+#X connect 181 0 172 0;
+#X connect 182 0 183 0;
+#X connect 183 0 177 0;
+#X connect 183 0 176 0;
 #X coords 0 -1 1 1 750 700 1 0 0;
