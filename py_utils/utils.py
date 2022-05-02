@@ -1,8 +1,7 @@
 # Import model
 import torch
-from trained_torch_models.params import model_params
 from BaseGrooveTransformers.models.transformer import GrooveTransformerEncoder
-
+import os
 import time
 
 import threading
@@ -25,31 +24,26 @@ ROLAND_REDUCED_MAPPING = {
 }
 ROLAND_REDUCED_MAPPING_VOICES = ['/KICK', '/SNARE', '/HH_CLOSED', '/HH_OPEN', '/TOM_3_LO', '/TOM_2_MID', '/TOM_1_HI', '/CRASH', '/RIDE']
 
+def initialize_model(params):
+    model_params = params
 
-def load_model(model_name, model_path):
+    groove_transformer = GrooveTransformerEncoder(model_params['d_model'], model_params['embedding_size_src'],
+                                                  model_params['embedding_size_tgt'], model_params['n_heads'],
+                                                  model_params['dim_feedforward'], model_params['dropout'],
+                                                  model_params['num_encoder_layers'],
+                                                  model_params['max_len'], model_params['device'])
+    return groove_transformer
 
-    # load model parameters from params.py file
-    params = model_params[model_name]
+def load_model(model_path, model_name):
 
     # load checkpoint
-    checkpoint = torch.load(model_path, map_location=params['device'])
+    params = torch.load(os.path.join(model_path, model_name+".params"), map_location='cpu')['model']
+    print(params)
+    model = initialize_model(params)
+    model.load_state_dict(torch.load(os.path.join(model_path,model_name + ".pt")))
+    model.eval()
 
-    # Initialize model
-    groove_transformer = GrooveTransformerEncoder(params['d_model'],
-                                                  params['embedding_sz'],
-                                                  params['embedding_sz'],
-                                                  params['n_heads'],
-                                                  params['dim_ff'],
-                                                  params['dropout'],
-                                                  params['n_layers'],
-                                                  params['max_len'],
-                                                  params['device'])
-
-    # Load model and put in evaluation mode
-    groove_transformer.load_state_dict(checkpoint['model_state_dict'])
-    groove_transformer.eval()
-
-    return groove_transformer
+    return model
 
 def get_new_drum_osc_msgs(hvo_tuple_new, hvo_tuple_prev=None):
     message_list = list()

@@ -1,9 +1,8 @@
 import os
 import torch
-import wandb
 import re
 import numpy as np
-from models.transformer import GrooveTransformerEncoder, GrooveTransformer
+from BaseGrooveTransformers.models.transformer import GrooveTransformerEncoder, GrooveTransformer
 
 
 def calculate_loss(prediction, y, bce_fn, mse_fn, hit_loss_penalty):
@@ -42,8 +41,7 @@ def calculate_loss(prediction, y, bce_fn, mse_fn, hit_loss_penalty):
 
 def initialize_model(params):
     model_params = params["model"]
-    training_params = params["training"]
-    load_model = params["load_model"]
+
 
     if model_params['encoder_only']:
         groove_transformer = GrooveTransformerEncoder(model_params['d_model'], model_params['embedding_size_src'],

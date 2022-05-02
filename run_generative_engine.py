@@ -30,10 +30,6 @@ parser.add_argument('--wait', type=float, default=2,
 parser.add_argument('--show_count', type=bool, default=True,
                     help='prints out the number of sequences generated',
                     required=False)
-parser.add_argument('--model', type=str, default="light_version",
-                    help='name of the model: (1) light_version: less computationally intensive, or '
-                         '(2) heavy_version: more computationally intensive',
-                    required=False)
 parser.add_argument('--del_wav', type=str, default='True',
                     help='Deletes wav file received from pd after opening it (default = True)',
                     required=False)
@@ -54,6 +50,7 @@ state_dict = {
     "samples_per_2bars": None,
     "silence_threshold": 0.05
 }
+
 
 if __name__ == '__main__':
 
@@ -79,7 +76,7 @@ if __name__ == '__main__':
         "ax": ax,
         "plot1": plot1,
         "invert_y": True, # should be false after first plotting
-        "input_mso": np.zeros((32, 16)),
+        "input_mso": torch.zeros((32, 16)),
         "overdub_mso": True,
         "overdub_ratio": 0.1,
         "win_length": 1024,
@@ -94,18 +91,15 @@ if __name__ == '__main__':
     extractor_settings = mso_settings
 
     # ------------------ Load Trained Model  ------------------ #
-    model_name = args.model         # "groove_transformer_trained"
-    model_path = f"trained_torch_models/{model_name}.model"
-
     show_count = args.show_count
 
-    groove_transformer = load_model(model_name, model_path)
+    trained_model_path = ["trained_models"]
+    model_names = ["ClosedHH_MSO", "KicksSnares", "RandomHigh", "RandomLow"]
+    model_name = "ClosedHH_MSO"
+    infilling_transformer = load_model(trained_model_path[0], model_names[0])
 
     voice_thresholds = [0.01 for _ in range(9)]
     voice_max_count_allowed = [16 for _ in range(9)]
-
-    # ------  Create an empty an empty torch tensor
-    input_tensor = torch.zeros((1, 32, 27))
 
     # ------  Create an empty h, v, o tuple for previously generated events to avoid duplicate messages
     (h_old, v_old, o_old) = (torch.zeros((1, 32, 9)), torch.zeros((1, 32, 9)), torch.zeros((1, 32, 9)))
@@ -165,7 +159,7 @@ if __name__ == '__main__':
             if mso_settings["overdub_mso"] is True:
                 mso_settings["input_mso"] = mso_settings["input_mso"] * mso_settings["overdub_ratio"]
             else:
-                mso_settings["input_mso"] = np.zeros((32, 16))
+                mso_settings["input_mso"] = torch.zeros((32, 16))
 
             if max(state_dict['input_wav']) >= state_dict["silence_threshold"]:
                 # extract mso
@@ -179,16 +173,10 @@ if __name__ == '__main__':
                     mso_settings["input_mso"][t, 2*voice] = data_mso[t, 2*voice]            # utiming
 
 
-
         elif "dump_internal_wav" in address:
             now = datetime.now()
             dt_string = now.strftime("%d_%m_%Y %H.%M.%S")
             sf.write(f'./tmp/internal_buffer_{dt_string}.wav',  state_dict['input_wav'], int(state_dict['sr']), subtype='PCM_24')
-
-        elif "VelutimeIndex" in address:
-            input_tensor[:, int(args[2]), 2] = 1 if args[0] > 0 else 0  # set hit
-            input_tensor[:, int(args[2]), 11] = args[0] / 127  # set velocity
-            input_tensor[:, int(args[2]), 20] = args[1]  # set utiming
 
         elif "threshold" in address:
             voice_thresholds[int(address.split("/")[-1])] = 1-args[0]
@@ -197,13 +185,13 @@ if __name__ == '__main__':
             voice_max_count_allowed[int(address.split("/")[-1])] = int(args[0])
 
         elif "change_model"  in address:
-            global groove_transformer
+            global infilling_transformer
             global model_name
-            if args[0] != model_name:
-                print("Change Model from {} to {}".format(model_name, args[0]))
-                model_name = args[0]  # "groove_transformer_trained"
-                model_path = f"trained_torch_models/{model_name}.model"
-                groove_transformer = load_model(model_name, model_path)
+            model_ix = int(args[0])
+            if model_names[model_ix] not in model_name:
+                print("Change Model from {} to {}".format(model_name, model_names[model_ix]))
+                infilling_transformer = load_model(trained_model_path[0], model_names[model_ix])
+                model_name = model_names[model_ix]
 
         elif "regenerate" in address:
             pass
@@ -244,10 +232,10 @@ if __name__ == '__main__':
 
         # only generate new pattern when there isnt any other osc messages backed up for processing in the message_queue
         if (message_queue.qsize() == 0):
-            # h_new, v_new, o_new = groove_transformer.predict(input_tensor, thres=0.5)
-            h_new, v_new, o_new = get_prediction(groove_transformer, input_tensor, voice_thresholds,
+            # h_new, v_new, o_new = infilling_transformer.predict(mso_settings["input_mso"], thres=0.5)
+            h_new, v_new, o_new = get_prediction(infilling_transformer, mso_settings["input_mso"], voice_thresholds,
                                                  voice_max_count_allowed)
-            _h, v, o = groove_transformer.forward(input_tensor)
+            _h, v, o = infilling_transformer.forward(mso_settings["input_mso"])
 
             # send to pd
             osc_messages_to_send = get_new_drum_osc_msgs((h_new, v_new, o_new))
